@@ -2,7 +2,7 @@ package com.elbadry.mohammed.services.impl;
 
 import com.elbadry.mohammed.dtos.ClientDTO;
 import com.elbadry.mohammed.entities.Client;
-import com.elbadry.mohammed.exceptions.EntityNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import com.elbadry.mohammed.mappers.ClientMapper;
 import com.elbadry.mohammed.repositories.ClientRepository;
 import com.elbadry.mohammed.services.ClientService;
@@ -58,7 +58,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO getClientByEmail(String email) {
         Client client = clientRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Client not found with email: " + email));
+                .orElseThrow(() -> new RuntimeException("Client not found with email: " + email));
         return clientMapper.toDto(client);
     }
 

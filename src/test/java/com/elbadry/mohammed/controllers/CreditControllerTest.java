@@ -3,8 +3,7 @@ package com.elbadry.mohammed.controllers;
 import com.elbadry.mohammed.dtos.CreditDTO;
 import com.elbadry.mohammed.dtos.CreditPersonnelDTO;
 import com.elbadry.mohammed.enums.StatutCredit;
-import com.elbadry.mohammed.security.JwtTokenUtil;
-import com.elbadry.mohammed.security.SecurityService;
+
 import com.elbadry.mohammed.services.CreditService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(CreditController.class)
+@WithMockUser
 public class CreditControllerTest {
 
     @Autowired
@@ -41,11 +41,7 @@ public class CreditControllerTest {
     @MockBean
     private CreditService creditService;
 
-    @MockBean
-    private SecurityService securityService;
 
-    @MockBean
-    private JwtTokenUtil jwtTokenUtil;
 
     private CreditDTO creditDTO;
     private CreditPersonnelDTO creditPersonnelDTO;

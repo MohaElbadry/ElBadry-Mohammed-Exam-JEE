@@ -5,7 +5,7 @@ import com.elbadry.mohammed.entities.Client;
 import com.elbadry.mohammed.mappers.ClientMapper;
 import com.elbadry.mohammed.repositories.ClientRepository;
 import com.elbadry.mohammed.services.impl.ClientServiceImpl;
-import jakarta.persistence.EntityNotFoundException;
+import java.lang.RuntimeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
