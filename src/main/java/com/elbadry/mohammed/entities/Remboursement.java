@@ -13,18 +13,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Remboursement {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     @Temporal(TemporalType.DATE)
     private Date date;
-    
     private Double montant;
-    
     @Enumerated(EnumType.STRING)
     private TypeRemboursement type;
-    
     @ManyToOne
     @JoinColumn(name = "credit_id")
     private Credit credit;
