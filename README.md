@@ -1,14 +1,26 @@
 # Banking Credit Management System
 
-This project is a Spring Boot and Angular JEE application for managing banking credits.
+This project is a Spring Boot application for managing banking credits with an Angular frontend. It was developed as part of the JEE examination by Mohammed El Badry.
+
+## Screenshots
+
+### Architecture Overview
+![Architecture Diagram](ScreenShots/Archi.png)
+
+### UML Class Diagram
+![UML Class Diagram](ScreenShots/UML.png)
 
 ## Project Overview
 
-The application allows for the management of banking credits with the following features:
-- A client can have multiple credits
-- There are three types of credits: Personal Credit, Real Estate Credit, and Professional Credit
-- A credit can have multiple repayments
-- Security is implemented using Spring Security with JWT
+The application offers comprehensive banking credit management with the following features:
+- A client can have multiple credits of different types
+- Three specialized types of credits are supported: 
+  - Personal Credit (Crédit Personnel)
+  - Real Estate Credit (Crédit Immobilier)
+  - Professional Credit (Crédit Professionnel)
+- Each credit can have multiple repayments (remboursements) with different types
+- Secure authentication and authorization via Spring Security with JWT
+- RESTful API architecture for easy integration with frontend applications
 
 ## Architecture
 
@@ -19,23 +31,44 @@ The application follows a layered architecture:
 
 ## Entity Model
 
-- **Client**: Defined by id, name, and email
-- **Credit**: Abstract class defined by id, request date, status, acceptance date, amount, duration, and interest rate
-  - **Personal Credit**: Extends Credit with a reason field
-  - **Real Estate Credit**: Extends Credit with a property type field
-  - **Professional Credit**: Extends Credit with reason and company name fields
-- **Remboursement**: Defined by id, date, amount, and type
+The application follows an object-oriented domain model:
+
+### Core Entities
+- **Client**: Defined by id, name, email, and associated credits
+  - A client may have multiple credits and a user account
+
+- **Utilisateur**: User account for authentication with username, password, and role
+
+- **Credit** (Abstract): Base class for all credit types with common attributes
+  - id, request date, status (EN_COURS, ACCEPTE, REJETE)
+  - acceptance date, amount, duration, interest rate
+  - Specialized into three concrete types:
+    - **CreditPersonnel**: Personal credit with a reason/purpose field
+    - **CreditImmobilier**: Real estate credit with property type (APPARTEMENT, MAISON, LOCAL_COMMERCIAL)
+    - **CreditProfessionnel**: Business credit with purpose and company name fields
+
+- **Remboursement**: Credit repayment transactions
+  - Defined by id, date, amount, and type (MENSUALITE, REMBOURSEMENT_ANTICIPE)
+  - Each remboursement is associated with a specific credit
 
 ## Technologies Used
 
-- Spring Boot 3.x
-- Spring Data JPA
-- Spring Security with JWT
-- H2 Database (for development)
-- MySQL (for production)
-- Lombok
-- MapStruct for DTO mapping
+### Backend
+- Spring Boot 3.x with Java 17
+- Spring Data JPA for data access
+- Spring Security with JWT for authentication
+- H2 Database for development and testing
+- MySQL for production deployment
+- Lombok for reducing boilerplate code
+- MapStruct for efficient DTO-Entity mapping
 - Swagger/OpenAPI for API documentation
+
+### Frontend
+- Angular with TypeScript
+- Angular Material for UI components
+- RxJS for reactive programming
+- NgRx for state management (optional)
+- Angular JWT for token handling
 
 ## Getting Started
 

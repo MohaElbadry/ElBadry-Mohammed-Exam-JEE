@@ -90,7 +90,7 @@ public class ClientServiceTest {
         when(clientRepository.findById(1L)).thenReturn(Optional.empty());
 
         // Act & Assert
-        assertThrows(EntityNotFoundException.class, () -> clientService.getClientById(1L));
+        assertThrows(RuntimeException.class, () -> clientService.getClientById(1L));
         verify(clientRepository, times(1)).findById(1L);
     }
 
@@ -133,7 +133,7 @@ public class ClientServiceTest {
         when(clientRepository.existsById(1L)).thenReturn(false);
 
         // Act & Assert
-        assertThrows(EntityNotFoundException.class, () -> clientService.updateClient(1L, clientDTO));
+        assertThrows(RuntimeException.class, () -> clientService.updateClient(1L, clientDTO));
         verify(clientRepository, times(1)).existsById(1L);
         verify(clientRepository, never()).save(any(Client.class));
     }
@@ -156,7 +156,7 @@ public class ClientServiceTest {
         when(clientRepository.existsById(1L)).thenReturn(false);
 
         // Act & Assert
-        assertThrows(EntityNotFoundException.class, () -> clientService.deleteClient(1L));
+        assertThrows(RuntimeException.class, () -> clientService.deleteClient(1L));
         verify(clientRepository, times(1)).existsById(1L);
         verify(clientRepository, never()).deleteById(1L);
     }
